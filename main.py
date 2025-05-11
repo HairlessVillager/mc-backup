@@ -42,7 +42,11 @@ def create_backup():
             subfolder_path = os.path.join(source_folder, subfolder)
             if os.path.isdir(subfolder_path):
                 destination_path = os.path.join(backup_folder_path, subfolder)
-                shutil.copytree(subfolder_path, destination_path)
+                shutil.copytree(
+                    subfolder_path,
+                    destination_path,
+                    ignore=shutil.ignore_patterns("session.lock"),
+                )
                 logger.info(
                     f"Backup created for subfolder {subfolder} at {destination_path}"
                 )
