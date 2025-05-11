@@ -100,7 +100,7 @@ def main():
         diagnose=True,
     )
 
-    schedule.every().minute.at(":00").do(create_backup)
+    schedule.every(60).minutes.do(create_backup)
     schedule.every().day.at("00:02").do(lambda: cleanup_old_backups(1))
 
     logger.info("Backup scheduler started. Press Ctrl+C to stop.")
